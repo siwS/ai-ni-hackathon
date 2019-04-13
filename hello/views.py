@@ -45,6 +45,8 @@ def upload(request):
     # Render list page with the documents and the form
     return render(request, "upload.html", {'documents': documents, 'form': form})
 
-
 def record(request):
     return render(request, "record.html", {})
+
+def aboutUs(request):
+    return render(request, "about-us.html", {})
