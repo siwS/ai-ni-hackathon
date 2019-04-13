@@ -48,3 +48,6 @@ def upload(request):
 
 def record(request):
     return render(request, "record.html", {})
+
+def audio(request):
+    return render(request, "audio.html", {})

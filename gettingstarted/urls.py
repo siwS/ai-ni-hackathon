@@ -19,6 +19,7 @@ urlpatterns = [
     path("db/", hello.views.db, name="db"),
     path("record/", hello.views.record, name="record"),
     path("upload/", hello.views.upload, name="upload"),
+    path("audio/", hello.views.audio, name="audio"),
 
     path("admin/", admin.site.urls),
 ]

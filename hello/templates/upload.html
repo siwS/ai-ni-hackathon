@@ -16,7 +16,7 @@
       {% endif %}
 
       <!-- Upload form. Note enctype attribute! -->
-      <form action="{% url "upload" %}" method="post" enctype="multipart/form-data">
+      <form id="upload-form" action="{% url "upload" %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <p>{{ form.non_field_errors }}</p>
 
@@ -27,7 +27,15 @@
               {{ form.docfile }}
           </p>
 
-          <p><input class="btn btn-lg btn-default" type="submit" value="Upload"/></p>
+          <p>
+            <input id="upload-btn" class="btn btn-default" type="submit" value="Upload"/>
+          </p>
+      </form>
+
+     <hr>
+      <form id="audio-form" action="{% url "audio" %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input class="btn btn-lg btn-default" type="submit" value="Process"/>
       </form>
 
 </div>
