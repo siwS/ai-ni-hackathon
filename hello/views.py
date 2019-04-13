@@ -17,3 +17,11 @@ def db(request):
     greetings = Greeting.objects.all()
 
     return render(request, "db.html", {"greetings": greetings})
+
+
+def upload(request):
+    return render(request, "upload.html", {})
+
+
+def record(request):
+    return render(request, "record.html", {})
