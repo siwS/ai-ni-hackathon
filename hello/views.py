@@ -34,7 +34,10 @@ def upload(request):
             b = Boss()
             b.graph_spectrogram(newdoc.docfile.url)
             # Redirect to the document list after POST
-            return render(request, "audio.html", {'document': newdoc})
+            newUrl = newdoc.docfile.url.replace('/media/documents', '')
+            newUrlFull = "/media/documents/output"+newUrl+".png"
+            print(newUrlFull)
+            return render(request, "audio.html", {'document': newdoc, 'url': newUrlFull})
     else:
         form = DocumentForm() # A empty, unbound form
 
