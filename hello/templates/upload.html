@@ -5,15 +5,8 @@
 <div class="container">
 <h2>Choose your file please :)</h2>
 <!-- List of uploaded documents -->
-      {% if documents %}
-          <ul class="list-group">
-              {% for document in documents %}
-                  <li class="list-group-item"><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
-              {% endfor %}
-          </ul>
-      {% else %}
-          <p>No documents.</p>
-      {% endif %}
+
+      <a href="{{ documents.last.docfile.url }}" target="_blank">{{ documents.last.docfile.name }}</a>
 
       <!-- Upload form. Note enctype attribute! -->
       <form id="upload-form" action="{% url "upload" %}" method="post" enctype="multipart/form-data">

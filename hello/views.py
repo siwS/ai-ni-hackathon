@@ -40,7 +40,7 @@ def upload(request):
 
 
     # Render list page with the documents and the form
-    return render(request, "upload.html", {'documents': documents, 'form': form})
+    return render(request, "upload.html", {'documents': documents, 'form': form })
 
 def record(request):
     if request.method == 'POST':
