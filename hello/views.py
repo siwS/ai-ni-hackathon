@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-
 from .models import Greeting
 from .models import Document
 from .forms import DocumentForm
@@ -50,6 +49,8 @@ def record(request):
 
     return render(request, "record.html", {})
 
+def audio(request):
+    return render(request, "audio.html", {})
 
 def aboutUs(request):
     return render(request, "about-us.html", {})
