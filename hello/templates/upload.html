@@ -21,14 +21,8 @@
           </p>
 
           <p>
-            <input id="upload-btn" class="btn btn-default" type="submit" value="Upload"/>
+            <input id="upload-btn" class="btn btn-default" type="submit" value="Process"/>
           </p>
-      </form>
-
-     <hr>
-      <form id="audio-form" action="{% url "audio" %}" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          <input class="btn btn-lg btn-default" type="submit" value="Process"/>
       </form>
 </div>
 
