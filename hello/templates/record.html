@@ -20,6 +20,7 @@
         volume,
         volumeLevel = 0,
         currentEditedSoundIndex;
+        var csrftoken = '{{ csrf_token }}';
 
         function startUserMedia(stream) {
           var input = audio_context.createMediaStreamSource(stream);
@@ -81,8 +82,9 @@
           audioElement.controls = true;
           audioElement.src = url;
 
+          var createDate = new Date().toISOString()
           downloadAnchor.href = url;
-          downloadAnchor.download = new Date().toISOString() + '.wav';
+          downloadAnchor.download = createDate + '.wav';
           downloadAnchor.innerHTML = 'Download';
           downloadAnchor.className = 'btn btn-primary';
 
@@ -113,6 +115,23 @@
           newCell = newRow.insertCell(-1);
           newCell.appendChild(editButton);
           newCell = newRow.insertCell(-1);
+
+          console.log("Saving the blob to the database...");
+          var formData = new FormData();
+          var outputName = createDate + ".wav";
+          formData.append("audio", blob, outputName)
+
+          $.ajax({
+             beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-CSRFToken', '{{csrf_token}}')
+             },
+             data: formData,
+             processData: false,
+             contentType: false,
+             type: 'POST'
+           }).done(function(response){
+             console.log(response);
+           });
         }
 
         window.onload = function init() {

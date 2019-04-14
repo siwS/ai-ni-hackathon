@@ -1,9 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.conf import settings
-from django.core.files.storage import FileSystemStorage
+
 
 from .models import Greeting
 from .models import Document
@@ -46,7 +44,12 @@ def upload(request):
     return render(request, "upload.html", {'documents': documents, 'form': form})
 
 def record(request):
+    if request.method == 'POST':
+        newdoc = Document(docfile = request.FILES['audio'])
+        newdoc.save()
+
     return render(request, "record.html", {})
+
 
 def aboutUs(request):
     return render(request, "about-us.html", {})
