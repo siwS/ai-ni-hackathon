@@ -31,7 +31,7 @@ def upload(request):
             newdoc.save()
 
             # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('upload'))
+            return render(request, "audio.html", {'document': newdoc})
     else:
         form = DocumentForm() # A empty, unbound form
 
