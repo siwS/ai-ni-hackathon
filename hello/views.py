@@ -31,8 +31,6 @@ def upload(request):
         if form.is_valid():
             newdoc = Document(docfile = request.FILES['docfile'])
             newdoc.save()
-
-            time.sleep(5)
             b = Boss()
             b.graph_spectrogram(newdoc.docfile.url)
             # Redirect to the document list after POST
