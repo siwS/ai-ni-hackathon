@@ -17,20 +17,23 @@ class Boss:
     # This is all we need
     # Create folders below for images
     def make_prediction_from_wav(self, wav_name):
-        store_folder = "new_wavs"
-        output_folder = "spectros"
+        store_folder = "media/documents"
+        output_folder = "media/documents/output"
         self.graph_spectrogram(indir=store_folder, outdir=output_folder, filename=wav_name)
-        self.test_image(spectro_name=f"{output_folder}/{wav_name}.png")
+        self.test_image(spectro_name=f"{wav_name}.png")
 
-    def graph_spectrogram(self, indir, outdir, filename):
-        wav_file = f"{indir}/{filename}"
+    def graph_spectrogram(self, filename):
+        wav_file = f"{filename}"
         try:
-            sound_info, frame_rate = self.get_wav_info(wav_file)
+            home_folder = os.path.dirname(os.path.realpath(__file__)).replace('/hello', '')
+            sound_info, frame_rate = self.get_wav_info(home_folder+wav_file)
             pylab.figure(figsize=(4,3))
             pylab.specgram(sound_info, Fs=frame_rate)
-            pylab.savefig(f"{outdir}/{filename}.png")
+            output_file = f"{home_folder+filename.replace('media/documents', 'media/documents/output')}.png"
+            pylab.savefig(output_file)
             pylab.close()
-        except:
+        except Exception as e:
+            print(e)
             return
 
     def get_wav_info(self, wav_file):
