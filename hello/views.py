@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from hello.boss import Boss
 from .models import Greeting
 from .models import Document
 from .forms import DocumentForm
+import time
 
 # Create your views here.
 def index(request):
@@ -30,6 +32,9 @@ def upload(request):
             newdoc = Document(docfile = request.FILES['docfile'])
             newdoc.save()
 
+            time.sleep(5)
+            b = Boss()
+            b.graph_spectrogram(newdoc.docfile.url)
             # Redirect to the document list after POST
             return HttpResponseRedirect(reverse('upload'))
     else:
